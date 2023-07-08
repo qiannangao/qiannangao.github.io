@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="网页上使用swiper+animate实现轮播和入场动效">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网页上使用swiper+animate实现轮播和入场动效">
+<meta property="og:url" content="http://example.com/2023/06/09/article04/index.html">
+<meta property="og:site_name" content="倩南">
+<meta property="og:description" content="网页上使用swiper+animate实现轮播和入场动效">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2023/06/09/article04/s1.png">
+<meta property="og:image" content="http://example.com/2023/06/09/article04/s2.png">
+<meta property="article:published_time" content="2023-06-09T06:09:26.000Z">
+<meta property="article:modified_time" content="2023-06-17T03:47:04.859Z">
+<meta property="article:author" content="nancy Jane">
+<meta property="article:tag" content="JS">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/06/09/article04/s1.png">
+
+<link rel="canonical" href="http://example.com/2023/06/09/article04/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>网页上使用swiper+animate实现轮播和入场动效 | 倩南</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+<a target="_blank" rel="noopener" href="https://github.com/qiannangao" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">倩南</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/09/article04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="nancy Jane">
+      <meta itemprop="description" content="心之所向，一苇以航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="倩南">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网页上使用swiper+animate实现轮播和入场动效
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-06-09 14:09:26" itemprop="dateCreated datePublished" datetime="2023-06-09T14:09:26+08:00">2023-06-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-06-17 11:47:04" itemprop="dateModified" datetime="2023-06-17T11:47:04+08:00">2023-06-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">项目总结</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+            <div class="post-description">网页上使用swiper+animate实现轮播和入场动效</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="animate使用"><a href="#animate使用" class="headerlink" title="animate使用"></a>animate使用</h3><p>animate.css是一个使用CSS3的animation制作的动画效果的CSS集合，里面预设了很多种常用的动画，且使用非常简单。使用步骤如下：</p>
+<ol>
+<li>登录wow.js官网 <a target="_blank" rel="noopener" href="https://wowjs.uk/docs.html">wow.js — Documentation (wowjs.uk)</a>，查看使用过程</li>
+<li>new一个wow的构造函数。注意：4.0之后的版本在添加animateClass时的属性值要做修改</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title function_">WOW</span>(&#123;</span><br><span class="line">     <span class="attr">boxClass</span>:     <span class="string">&#x27;wow&#x27;</span>,      <span class="comment">// default</span></span><br><span class="line">     <span class="attr">animateClass</span>: <span class="string">&#x27;animate__animated&#x27;</span>, <span class="comment">// default</span></span><br><span class="line">     <span class="attr">offset</span>:       <span class="number">0</span>,          <span class="comment">// default</span></span><br><span class="line">     <span class="attr">mobile</span>:       <span class="literal">true</span>,       <span class="comment">// default</span></span><br><span class="line">     <span class="attr">live</span>:         <span class="literal">true</span>        <span class="comment">// default</span></span><br><span class="line">   &#125;</span><br><span class="line">   )</span><br><span class="line">   wow.<span class="title function_">init</span>();</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>引入animate.css <a target="_blank" rel="noopener" href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.css">https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.css</a></li>
+</ol>
+<p>和wow.js文件 <a target="_blank" rel="noopener" href="https://cdn.bootcdn.net/ajax/libs/wow/1.1.2/wow.js">https://cdn.bootcdn.net/ajax/libs/wow/1.1.2/wow.js</a></p>
+<ol>
+<li>使用时在元素上添加wow类名和animate中对应的动画类名以及持续时长</li>
+</ol>
+<img src="/2023/06/09/article04/s1.png" class="" title="img">
+
+<ul>
+<li>需要注意的当为整体大盒子设置animate动画时，默认时长一般是1s，当我们想为其中的子元素单独设置时长时，可在子元素上添加animate__delay-ns属性。eg:</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="keyword">class</span>=<span class="string">&quot;wood&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wood-title  animate__delay-3s&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        高级木作定制   </span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="variable language_">window</span>.<span class="property">onscroll</span>=<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">scrollY</span> - <span class="number">900</span> &gt; <span class="number">0</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">         wood.<span class="title function_">addClass</span>(<span class="string">&#x27;wow animate__fadeInRight animate__animated&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">         woodTitle.<span class="title function_">addClass</span>(<span class="string">&#x27;wow animate__slideInUp animate__animated&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>wow还有一些高级属性：</li>
+</ul>
+<p><strong>data-wow-duration:</strong> 更改动画持续时间<br><strong>data-wow-delay:</strong> 动画开始前的延迟时间<br><strong>data-wow-offset:</strong> 动画的距离（与浏览器底部相关）<br><strong>data-wow-iteration:</strong> 动画重复的次数</p>
+<h3 id="swiper使用"><a href="#swiper使用" class="headerlink" title="swiper使用"></a>swiper使用</h3><ol>
+<li>登录官网 <a target="_blank" rel="noopener" href="https://swiper.com.cn/">Swiper中文网-轮播图幻灯片js插件,H5页面前端开发</a></li>
+</ol>
+<p>下载swiper-bundle.js <a target="_blank" rel="noopener" href="https://unpkg.com/swiper@8/swiper-bundle.js%E5%92%8Cswiper-bundle.css">https://unpkg.com/swiper@8/swiper-bundle.js和swiper-bundle.css</a> <a target="_blank" rel="noopener" href="https://unpkg.com/swiper@8/swiper-bundle.css">https://unpkg.com/swiper@8/swiper-bundle.css</a></p>
+<ol>
+<li>初始化轮播图的页面结构。swiper和swiper-wrapper和swiper-slide的类名一般不做修改</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="keyword">class</span>=<span class="string">&quot;swiper&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;swiper-wrapper&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;swiper-slide&quot;</span>&gt;</span>Slide 1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;swiper-slide&quot;</span>&gt;</span>Slide 2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;swiper-slide&quot;</span>&gt;</span>Slide 3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    &lt;!-- 如果需要分页器 --&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;swiper-pagination&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    </span><br><span class="line">    &lt;!-- 如果需要导航按钮 --&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;swiper-button-prev&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;swiper-button-next&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    </span><br><span class="line">    &lt;!-- 如果需要滚动条 --&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;swiper-scrollbar&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">导航等组件可以放在<span class="title class_">Swiper</span>容器之外</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>构造swiper实例对象。网页中有多个轮播时，swiper构造函数的第一个参数一般不用’.swiper’,而是换作<strong>自定义类名</strong></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> mySwiper = <span class="keyword">new</span> <span class="title class_">Swiper</span> (<span class="string">&#x27;.swiper&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">direction</span>: <span class="string">&#x27;vertical&#x27;</span>, <span class="comment">// 垂直切换选项</span></span><br><span class="line">    <span class="attr">autoplay</span>:<span class="literal">true</span>,<span class="comment">//自动切换</span></span><br><span class="line">    <span class="attr">loop</span>: <span class="literal">true</span>, <span class="comment">// 循环模式选项</span></span><br><span class="line">    <span class="comment">// 如果需要分页器</span></span><br><span class="line">    <span class="attr">pagination</span>: &#123;</span><br><span class="line">      <span class="attr">el</span>: <span class="string">&#x27;.swiper-pagination&#x27;</span>,</span><br><span class="line">       <span class="attr">clickable</span>:<span class="literal">true</span>,<span class="comment">//可点击</span></span><br><span class="line">        <span class="attr">bulletActiveClass</span>: <span class="string">&#x27;my-bullet-active&#x27;</span>,<span class="comment">//分页器激活时的样式</span></span><br><span class="line">        <span class="comment">//另外还有renderBullet等属性</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 如果需要前进后退按钮</span></span><br><span class="line">    <span class="attr">navigation</span>: &#123;</span><br><span class="line">      <span class="attr">nextEl</span>: <span class="string">&#x27;.swiper-button-next&#x27;</span>,</span><br><span class="line">      <span class="attr">prevEl</span>: <span class="string">&#x27;.swiper-button-prev&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 如果需要滚动条</span></span><br><span class="line">    <span class="attr">scrollbar</span>: &#123;</span><br><span class="line">      <span class="attr">el</span>: <span class="string">&#x27;.swiper-scrollbar&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)        </span><br><span class="line">  &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>遇到图片宽度铺满整屏的情况时，有两种方法解决：</li>
+</ol>
+<p>（1）图片定高度</p>
+<p> 遇到宽度不足图片大小的显示屏时，我们需要把图片的中心区域展示出来，也就是设置background-position为center居中。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .<span class="property">banner</span> &#123;</span><br><span class="line">    <span class="attr">width</span>: <span class="number">100</span>%;</span><br><span class="line">    <span class="attr">height</span>: 900px;</span><br><span class="line">    <span class="attr">background</span>: <span class="title function_">url</span>(<span class="string">&#x27;../img/banner.png&#x27;</span>) no-repeat center;</span><br><span class="line">    background-<span class="attr">size</span>: cover;</span><br><span class="line">   &lt;/style&gt;   </span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;banner&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;img/banner.png&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>当视口的宽高都不及图片大时，应设置图片的background-position为center。（只展示图片最中心的区域）。</p>
+<p>（2）图片自适应高。</p>
+<p> 当前视口的图片宽高比和原图片宽高比相同。为了避免出现横滚动条，body要设置min-width不小于视口大小。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 按照图片比例制作这个banner盒子 */</span></span><br><span class="line">.<span class="property">banner</span>&#123;</span><br><span class="line">    <span class="attr">width</span>: <span class="number">100</span>%;</span><br><span class="line">    <span class="comment">/* 高度有图片 img 撑起来 */</span></span><br><span class="line">&#125;</span><br><span class="line">.<span class="property">banner</span> img&#123;</span><br><span class="line">    <span class="attr">width</span>: <span class="number">100</span>%;</span><br><span class="line">    <span class="comment">/* 按照图片比例自适应 */</span></span><br><span class="line">    <span class="attr">height</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>补充：背景属性表</p>
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>属性作用</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>background-color</td>
+<td>背景图片颜色</td>
+<td>color</td>
+</tr>
+<tr>
+<td>background-image</td>
+<td>背景图片</td>
+<td>url(‘1.png’);</td>
+</tr>
+<tr>
+<td>background-repeat</td>
+<td>平铺方式</td>
+<td>repeat 、 no-repeat 、 repeat-x 、 repeat-y</td>
+</tr>
+<tr>
+<td>background-position</td>
+<td>图片位置</td>
+<td>left、 right、 top、 bottom、 center，百分数，length</td>
+</tr>
+<tr>
+<td>background</td>
+<td>简写（顺序不能错）</td>
+<td>background: green url(1.jpg) no-repeat left bottom;</td>
+</tr>
+<tr>
+<td>background-size</td>
+<td>背景图片的尺寸</td>
+<td>cover(比例不变溢出隐藏),contain（比例不变会有留白），percentage百分比（背景区域的），length(单位是px)</td>
+</tr>
+</tbody></table>
+<ol>
+<li>轮播图使用了swiper插件，分页器激活时给bulletActiveClass添加的类名是自定义样式。</li>
+</ol>
+<p>轮播大图结构如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="keyword">class</span>=<span class="string">&quot;swiper swiper-big wow animate__fadeInUp animate__animated&quot;</span>&gt;</span><br><span class="line">       &lt;div class=&quot;swiper-wrapper&quot;&gt;</span><br><span class="line">           &lt;div class=&quot;swiperBig-slide swiper-slide&quot;&gt;</span><br><span class="line">               &lt;img src=&quot;./imgs/swipper1.png&quot; alt=&quot;&quot;&gt;</span><br><span class="line">           &lt;/div&gt;</span><br><span class="line">           &lt;div class=&quot;swiperBig-slide swiper-slide&quot;&gt;</span><br><span class="line">               &lt;img src=&quot;./imgs/swipper2.png&quot; alt=&quot;&quot;&gt;</span><br><span class="line">           &lt;/div&gt;</span><br><span class="line">           &lt;div class=&quot;swiperBig-slide swiper-slide&quot;&gt;</span><br><span class="line">               &lt;img src=&quot;./imgs/swipper3.png&quot; alt=&quot;&quot;&gt;</span><br><span class="line">           &lt;/div&gt;</span><br><span class="line">           &lt;div class=&quot;swiperBig-slide swiper-slide&quot;&gt;</span><br><span class="line">               &lt;img src=&quot;./imgs/swipper4.png&quot; alt=&quot;&quot;&gt;</span><br><span class="line">           &lt;/div&gt;</span><br><span class="line">       &lt;/div&gt;</span><br><span class="line">       &lt;ul class=&quot;slide-list swiper-pagination&quot;&gt;</span><br><span class="line">           &lt;!-- &lt;li class=&quot;slide-item&quot;&gt;</span><br><span class="line">           &lt;/li&gt;</span><br><span class="line">           &lt;li class=&quot;slide-item&quot;&gt;&lt;/li&gt;</span><br><span class="line">           &lt;li class=&quot;slide-item&quot;&gt;&lt;/li&gt;</span><br><span class="line">           &lt;li class=&quot;slide-item&quot;&gt;&lt;/li&gt; --&gt;</span><br><span class="line">       &lt;/ul&gt;</span><br><span class="line">   &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>遇到多图轮播例如下图时，实现如下：</p>
+<img src="/2023/06/09/article04/s2.png" class="" title="img"></li>
+</ol>
+<p>找到swiper中对应的样式，查看源代码书写swiper构造函数中对应属性，上图中轮播区域可容纳轮播图的数量是3.5，设置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mySwiper3 = <span class="keyword">new</span> <span class="title class_">Swiper</span>(<span class="string">&#x27;.swiper-little&#x27;</span>, &#123;</span><br><span class="line">               <span class="attr">loop</span>: <span class="literal">true</span>,</span><br><span class="line">               <span class="attr">autoplay</span>:<span class="literal">true</span>,</span><br><span class="line">               <span class="attr">slidesPerView</span>: <span class="number">3.5</span>,<span class="comment">//轮播视图中容纳的轮播项数量</span></span><br><span class="line">               <span class="attr">spaceBetween</span>: <span class="number">100</span>,</span><br><span class="line">               <span class="comment">// slidesPerGroup: 3.5,一次滑动的轮播项数量，默认为1</span></span><br><span class="line">               <span class="attr">navigation</span>: &#123;</span><br><span class="line">                   <span class="attr">nextEl</span>: <span class="string">&#x27;.swiper-button-next&#x27;</span>,</span><br><span class="line">                   <span class="attr">prevEl</span>: <span class="string">&#x27;.swiper-button-prev&#x27;</span>,</span><br><span class="line">               &#125;,</span><br><span class="line">           &#125;)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>浏览器滚动到一定宽度时给元素设置入场动画实现如下：</li>
+</ol>
+<p><strong>当元素的滚动条滚动时触发的事件。用法即：<code>Element.onscroll = function()&#123;&#125;;</code></strong></p>
+<ol>
+<li>发生某个鼠标事件时，数字增长的动效实现如下：</li>
+</ol>
+<p>（1）引入countup.js插件 <a target="_blank" rel="noopener" href="https://cdn.bootcdn.net/ajax/libs/countup.js/2.6.0/countUp.js">https://cdn.bootcdn.net/ajax/libs/countup.js/2.6.0/countUp.js</a></p>
+<p>countup依赖于jquery，需要引入在jq的后面</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> n1 = <span class="keyword">new</span> <span class="title class_">CountUp</span>(num1, <span class="number">50</span>),</span><br><span class="line">            n2 = <span class="keyword">new</span> <span class="title class_">CountUp</span>(num2, <span class="number">2017</span>),</span><br><span class="line">            n3 = <span class="keyword">new</span> <span class="title class_">CountUp</span>(num3, <span class="number">40</span>),</span><br><span class="line">            n4 = <span class="keyword">new</span> <span class="title class_">CountUp</span>(num4, <span class="number">240</span>);</span><br><span class="line">        <span class="comment">// 页面再次刷新时要判断一下卷入距离，然后进行数字增长</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">pageYOffset</span> + <span class="variable language_">window</span>.<span class="property">innerHeight</span> - $(<span class="string">&#x27;.table&#x27;</span>)[<span class="number">0</span>].<span class="property">offsetTop</span> &gt; <span class="number">100</span>) &#123;</span><br><span class="line">            n1.<span class="title function_">start</span>();</span><br><span class="line">            n2.<span class="title function_">start</span>();</span><br><span class="line">            n3.<span class="title function_">start</span>();</span><br><span class="line">            n4.<span class="title function_">start</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 当页面卷入一定距离时数字进行增长</span></span><br><span class="line"><span class="comment">//innerHeight是浏览器窗口的高度</span></span><br><span class="line">        <span class="variable language_">window</span>.<span class="property">onscroll</span> = _.<span class="title function_">throttle</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">            <span class="keyword">var</span> dis = <span class="variable language_">window</span>.<span class="property">pageYOffset</span> + <span class="variable language_">window</span>.<span class="property">innerHeight</span> - $(<span class="string">&#x27;.table&#x27;</span>)[<span class="number">0</span>].<span class="property">offsetTop</span>;</span><br><span class="line">            <span class="keyword">if</span> (dis &gt; <span class="number">100</span>) &#123;</span><br><span class="line">                n1.<span class="title function_">start</span>()</span><br><span class="line">                n2.<span class="title function_">start</span>()</span><br><span class="line">                n3.<span class="title function_">start</span>()</span><br><span class="line">                n4.<span class="title function_">start</span>()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="number">50</span>)</span><br><span class="line">    &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>nancy Jane
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/06/09/article04/" title="网页上使用swiper+animate实现轮播和入场动效">http://example.com/2023/06/09/article04/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JS/" rel="tag"># JS</a>
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/06/05/article03-1/" rel="prev" title="浅谈ECMAScript 6.0(二)">
+      <i class="fa fa-chevron-left"></i> 浅谈ECMAScript 6.0(二)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/06/13/article05/" rel="next" title="细数vue实例对象中的属性，方法，对象">
+      细数vue实例对象中的属性，方法，对象 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="<MTAyMC81ODQ1MS8zNDkxNA==>"></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#animate%E4%BD%BF%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">animate使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#swiper%E4%BD%BF%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text">swiper使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="nancy Jane"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">nancy Jane</p>
+  <div class="site-description" itemprop="description">心之所向，一苇以航</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qiannangao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qiannangao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3065966250@qq.com" title="E-Mail → mailto:3065966250@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2023-05 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nancy Jane</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">31k</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共12.3k字</span>
+</div>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

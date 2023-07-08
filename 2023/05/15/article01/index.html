@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="this的指向问题大全。。。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js中this的指向问题">
+<meta property="og:url" content="http://example.com/2023/05/15/article01/index.html">
+<meta property="og:site_name" content="倩南">
+<meta property="og:description" content="this的指向问题大全。。。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-15T08:40:26.000Z">
+<meta property="article:modified_time" content="2023-06-05T07:33:01.115Z">
+<meta property="article:author" content="nancy Jane">
+<meta property="article:tag" content="JS">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/05/15/article01/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>js中this的指向问题 | 倩南</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+<a target="_blank" rel="noopener" href="https://github.com/qiannangao" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">倩南</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/15/article01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="nancy Jane">
+      <meta itemprop="description" content="心之所向，一苇以航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="倩南">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          js中this的指向问题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-05-15 16:40:26" itemprop="dateCreated datePublished" datetime="2023-05-15T16:40:26+08:00">2023-05-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-06-05 15:33:01" itemprop="dateModified" datetime="2023-06-05T15:33:01+08:00">2023-06-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">前端知识</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+            <div class="post-description">this的指向问题大全。。。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-web全局环境下的this指向window"><a href="#1-web全局环境下的this指向window" class="headerlink" title="1.web全局环境下的this指向window"></a><strong>1.web全局环境下的this指向window</strong></h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);<span class="comment">//`window`</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="2-默认绑定"><a href="#2-默认绑定" class="headerlink" title="2.默认绑定"></a>2.默认绑定</h1><p>函数直接调用的情况（无任何调用前缀）</p>
+<p><strong>非严格模式下，函数内部的this指向全局对象window；严格模式下为underfined</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 非严格模式</span></span><br><span class="line">        <span class="keyword">function</span> <span class="title function_">fun1</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);<span class="comment">//window</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="title function_">fun1</span>();</span><br><span class="line"><span class="comment">// 严格模式</span></span><br><span class="line">        <span class="keyword">function</span> <span class="title function_">fun2</span>(<span class="params"></span>)&#123;</span><br><span class="line">              <span class="string">&quot;use strict&quot;</span>;<span class="comment">//严格模式的语法要求变量必须先声明后赋值</span></span><br><span class="line">              <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);<span class="comment">//underfined</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="title function_">fun2</span>();</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-隐式绑定"><a href="#3-隐式绑定" class="headerlink" title="3.隐式绑定"></a>3.隐式绑定</h1><p>函数调用时，前面存在调用它的对象，那么this就会隐式绑定到这个对象上。如果函数调用前存在多个对象，this指向距离调用自己最近的对象。简而言之，<strong>this指向调用函数的对象</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj=&#123;</span><br><span class="line">            <span class="attr">name</span>:<span class="string">&#x27;nancy&#x27;</span>,</span><br><span class="line">            <span class="attr">age</span>:<span class="number">23</span>,</span><br><span class="line">            <span class="attr">fun3</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);<span class="comment">//指向obj</span></span><br><span class="line">                <span class="comment">// 因为fun4是直接调用的，所以指向调用者window，fun3由obj调用，指向obj</span></span><br><span class="line">                <span class="keyword">function</span> <span class="title function_">fun4</span>(<span class="params"></span>)&#123;</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);<span class="comment">//指向window</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="title function_">fun4</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        obj.<span class="title function_">fun3</span>();</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-显示绑定"><a href="#4-显示绑定" class="headerlink" title="4.显示绑定"></a>4.显示绑定</h1><p>明确告诉JavaScript Engine 调用函数的时候 this所指向的值。用于显示this绑定的方法有call，apply和bind;</p>
+<p><strong>call和apply的第一个参数作为函数运行的this</strong>，后面的参数作为函数运行时的参数；二者区别是call 通过 剩余参数的形式 传递参数列表，apply 通过 数组的形式 传达参数列表;</p>
+<p>bind就是给函数套一层函数，利用柯里化，提前设置好上下文对象。根据这个原理，可以知道，无论你外面包裹了多少层，目标函数不会变。且由于闭包的存在，最初的这个context对象也不会变，所以当包裹在外层的函数一层层褪去后，最终使用到的context对象依旧是第一次绑定的对象。硬绑定可以有效解决this丢失问题</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fun5</span>(<span class="params">year,name,obj</span>)&#123;</span><br><span class="line">           <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);<span class="comment">//&#123;age:18&#125;</span></span><br><span class="line">           <span class="variable language_">console</span>.<span class="title function_">log</span>(year+<span class="string">&#x27;年&#x27;</span>+name+<span class="variable language_">this</span>.<span class="property">age</span>+<span class="string">&#x27;岁&#x27;</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">let</span> obj=&#123;</span><br><span class="line">           <span class="attr">age</span>:<span class="number">22</span></span><br><span class="line">       &#125;;</span><br><span class="line">       fun5.<span class="title function_">call</span>(obj,<span class="number">2022</span>,<span class="string">&#x27;小明&#x27;</span>);<span class="comment">//2022年小明22岁</span></span><br><span class="line">       fun5.<span class="title function_">apply</span>(obj,[<span class="number">2023</span>,<span class="string">&#x27;小明&#x27;</span>])<span class="comment">//2023年小明22岁</span></span><br><span class="line">       <span class="keyword">let</span> admin=&#123;</span><br><span class="line">           <span class="attr">name</span>:<span class="string">&#x27;woody&#x27;</span></span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">let</span> fun6=fun5.<span class="title function_">bind</span>(admin);<span class="comment">//this指向admin</span></span><br><span class="line">       <span class="title function_">fun6</span>();</span><br></pre></td></tr></table></figure>
+
+<p>三点注意事项：</p>
+<ul>
+<li>call和apply是立即执行，bind则是返回一个绑定了this的新函数，只有你调用了这个新函数才真的调用了目标函数</li>
+<li>bind函数存在多次绑定的问题，如果多次绑定this，则以第一次为准。</li>
+<li>bind函数实际上是显示绑定（call、apply）的一个变种，称为硬绑定。由于硬绑定是一种非常常用的模式，所以在 ES5 中提供了内置的方法Function.prototype.bind</li>
+</ul>
+<h1 id="5-new绑定"><a href="#5-new绑定" class="headerlink" title="5.new绑定"></a>5.new绑定</h1><p>new关键字来执行函数，相当于构造函数来实例化对象，则<strong>this指向当前实例化的对象</strong></p>
+<p>使用new关键字来调用函数是，会执行如下的操作:</p>
+<ol>
+<li>创建一个全新的对象</li>
+<li>新对象的隐式原型等于构造函数的显示原型</li>
+<li>这个新对象会绑定到函数调用的this上</li>
+<li>将this所指向的那个对象返回</li>
+</ol>
+<p> 如果函数显示的返回了一个对象</p>
+<p> 那么就会将显示返回的那个对象作为函数的返回值返回</p>
+<p> 而不是使用this所指向的那个对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fun7</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);<span class="comment">//fun7</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> fn=<span class="keyword">new</span> <span class="title function_">fun7</span>();</span><br></pre></td></tr></table></figure>
+
+<h1 id="6-箭头函数"><a href="#6-箭头函数" class="headerlink" title="6.箭头函数"></a>6.箭头函数</h1><p>箭头函数中的 <code>this</code> 与普通函数完全不同，也不受调用方式的影响，事实上箭头函数中并不存在 <code>this</code> ！箭头函数中访问的 <code>this</code> 不过是箭头函数所在作用域的 <code>this</code> 变量。</p>
+<p>箭头函数函数内不存在this，沿用上一级的，<strong>this是最近作用域中的this</strong>，向外层找</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj1=&#123;</span><br><span class="line">           <span class="attr">name</span>:<span class="string">&#x27;nancy&#x27;</span>,</span><br><span class="line">           <span class="attr">fun8</span>:<span class="function">()=&gt;</span>&#123;</span><br><span class="line">               <span class="comment">// 箭头函数中的this与函数声明环境中的this一样</span></span><br><span class="line">               <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);<span class="comment">//window</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       obj1.<span class="title function_">fun8</span>();</span><br></pre></td></tr></table></figure>
+
+<p>注意以下两点：</p>
+<ol>
+<li>函数体内的this就是定义时所在的对象，而非调用时所在的对象，和普通函数相反。</li>
+<li>箭头函数无法用做构造函数，即不能使用new调用</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>nancy Jane
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/05/15/article01/" title="js中this的指向问题">http://example.com/2023/05/15/article01/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JS/" rel="tag"># JS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/06/03/article02/" rel="next" title="ajax渲染电影网站">
+      ajax渲染电影网站 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="<MTAyMC81ODQ1MS8zNDkxNA==>"></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-web%E5%85%A8%E5%B1%80%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84this%E6%8C%87%E5%90%91window"><span class="nav-number">1.</span> <span class="nav-text">1.web全局环境下的this指向window</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E9%BB%98%E8%AE%A4%E7%BB%91%E5%AE%9A"><span class="nav-number">2.</span> <span class="nav-text">2.默认绑定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E9%9A%90%E5%BC%8F%E7%BB%91%E5%AE%9A"><span class="nav-number">3.</span> <span class="nav-text">3.隐式绑定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E6%98%BE%E7%A4%BA%E7%BB%91%E5%AE%9A"><span class="nav-number">4.</span> <span class="nav-text">4.显示绑定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-new%E7%BB%91%E5%AE%9A"><span class="nav-number">5.</span> <span class="nav-text">5.new绑定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"><span class="nav-number">6.</span> <span class="nav-text">6.箭头函数</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="nancy Jane"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">nancy Jane</p>
+  <div class="site-description" itemprop="description">心之所向，一苇以航</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qiannangao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qiannangao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3065966250@qq.com" title="E-Mail → mailto:3065966250@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2023-05 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nancy Jane</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">31k</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共12.3k字</span>
+</div>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
