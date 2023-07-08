@@ -25,13 +25,13 @@
 <meta property="og:url" content="http://example.com/2023/07/01/09-passValue/index.html">
 <meta property="og:site_name" content="倩南">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/07/01/09-passValue/neicun.png">
+<meta property="og:image" content="http://example.com/.com//07/01/09-passValue/neicun.png">
 <meta property="article:published_time" content="2023-07-01T07:38:43.000Z">
 <meta property="article:modified_time" content="2023-07-01T07:43:40.749Z">
 <meta property="article:author" content="nancy Jane">
 <meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2023/07/01/09-passValue/neicun.png">
+<meta name="twitter:image" content="http://example.com/.com//07/01/09-passValue/neicun.png">
 
 <link rel="canonical" href="http://example.com/2023/07/01/09-passValue/">
 
@@ -235,7 +235,7 @@
 <p>基本数据类型包括Boolean,Number,String,Underfined,Null以及对象变量的指针。</p>
 <p>（2）<strong>引用数据类型保存在堆内存中</strong>，并且会有一个十六进制的内存地址，在栈内存中声明的变量的值就是十六进制的内存地址。因为<strong>引用数据类型占据空间大，大小不固定。如果存储在栈中，将会影响程序运行的性能</strong>。引用数据类型<strong>在栈中存储了该对象在堆内存的引用地址</strong>，<strong>对象的内容存储在堆中</strong>，你不可以直接访问堆内存空间中的位置和操作堆内存空间。只能操作对象在栈内存的引用地址。</p>
 <p>引用数据类型包括Object,Array,Function。</p>
-<img src="/2023/07/01/09-passValue/neicun.png" class="" title="img">
+<img src="/.com//07/01/09-passValue/neicun.png" class title="img">
 
 <h2 id="2-问题解决"><a href="#2-问题解决" class="headerlink" title="2.问题解决"></a>2.问题解决</h2><p>（1）为什么子组件可以修改父组件传递的对象</p>
 <p>联系到内存空间中数据存储的方式，当js访问对象数据的时候，只能通过访问栈中的引用地址，所以<strong>父组件传递给子组件的，实际上是对象的引用地址</strong>。<strong>子组件</strong>修改对象的属性值时，<strong>修改的是堆空间中的数据</strong>，所以父组件中的数据也会变化。</p>
