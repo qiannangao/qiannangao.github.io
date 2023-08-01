@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo2.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo2.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="基于uniapp的家居类购物小程序项目总结">
+<meta property="og:url" content="http://example.com/2023/08/01/12-leju/index.html">
+<meta property="og:site_name" content="倩南">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/.com//scroll.png">
+<meta property="og:image" content="http://example.com/.com//price.png">
+<meta property="og:image" content="http://example.com/.com//confirm.png">
+<meta property="og:image" content="http://example.com/.com//mine.png">
+<meta property="og:image" content="http://example.com/.com//order.png">
+<meta property="article:published_time" content="2023-08-01T08:19:14.000Z">
+<meta property="article:modified_time" content="2023-08-01T13:16:09.579Z">
+<meta property="article:author" content="nancy Jane">
+<meta property="article:tag" content="uniapp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/.com//scroll.png">
+
+<link rel="canonical" href="http://example.com/2023/08/01/12-leju/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>基于uniapp的家居类购物小程序项目总结 | 倩南</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+<a target="_blank" rel="noopener" href="https://github.com/qiannangao" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">倩南</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/01/12-leju/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="nancy Jane">
+      <meta itemprop="description" content="心之所向，一苇以航">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="倩南">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于uniapp的家居类购物小程序项目总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-08-01 16:19:14 / 修改时间：21:16:09" itemprop="dateCreated datePublished" datetime="2023-08-01T16:19:14+08:00">2023-08-01</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+            <div class="post-description">基于uniapp的家居类购物小程序项目总结</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>乐居是一款基于uniapp的家居类购物小程序，总共有20多个页面，写得很累。</p>
+<h2 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h2><h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><ul>
+<li><p>pages页面</p>
+<ul>
+<li>home -首页</li>
+</ul>
+<ul>
+<li>address -地址页<ul>
+<li>addressDetail -编辑地址页</li>
+</ul>
+</li>
+<li>category  -分类页<ul>
+<li>goodList  -商品列表页</li>
+</ul>
+</li>
+<li>confirmOrder  -订单确认页<ul>
+<li>pay -订单支付页</li>
+</ul>
+</li>
+<li>find -发现页<ul>
+<li>articleDetail -文章详情页</li>
+</ul>
+</li>
+<li>mine -个人信息页<ul>
+<li>articleCollect -文章收藏页</li>
+<li>productCollect -商品收藏页</li>
+<li>cart -购物车页</li>
+<li>changeInfo -修改个人信息页</li>
+<li>login -登录页</li>
+<li>register -注册页</li>
+<li>order-订单页</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="需求实现"><a href="#需求实现" class="headerlink" title="需求实现"></a>需求实现</h2><h4 id="home页"><a href="#home页" class="headerlink" title="home页"></a>home页</h4><h5 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h5><p>home页分为顶部轮播图，四个分类部分，限时活动提示，商品的新品推荐，商品的热门推荐几个部分。</p>
+<ul>
+<li><p>轮播图</p>
+<ul>
+<li>使用swiper标签循环渲染数据实现</li>
+</ul>
+</li>
+<li><p>商品的新品推荐</p>
+<ul>
+<li><p>使用scroll-view标签实现左右滑动</p>
+<img src="/.com//scroll.png" alt="img" style="zoom:67%;"></li>
+</ul>
+</li>
+<li><p>其余数据v-for渲染实现</p>
+</li>
+</ul>
+<h4 id="category页"><a href="#category页" class="headerlink" title="category页"></a>category页</h4><h5 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h5><p>category页分为四个分类：创意，风格，饰品，灯具。点击跳转至goodList商品列表页。goodList页包含顶部导航栏：新品，销量，价格。</p>
+<h5 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h5><ul>
+<li>goodList页面onLoad时接收从category传来的id,调接口查找对应分类的商品列表，渲染在页面上。</li>
+<li>导航栏点击“新品”时，展示全部商品数据；点击“销量”和“价格”时，分别按销量和价格排序。<ul>
+<li>给tabbar添加tap事件，每次点击先将排序方式，是否降序，起始页，product列表都设置为初始值；再设置对应的以上参数，重新渲染数据。</li>
+</ul>
+</li>
+</ul>
+<p>下图按价格升序排列：</p>
+<img src="/.com//price.png" alt="img" style="zoom:67%;">
+
+<h4 id="productDetail页"><a href="#productDetail页" class="headerlink" title="productDetail页"></a>productDetail页</h4><h5 id="介绍-2"><a href="#介绍-2" class="headerlink" title="介绍"></a>介绍</h5><p>在goodList页时，点击单个商品跳转到对应的productDetail商品详情页，productDetail页展示了商品的图片集，价格等数据，同时还可进行收藏，加入购物车，购买。</p>
+<h5 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h5><ul>
+<li><p>在goodList页点击商品时传递商品id，在productDetail页根据id调接口查询商品信息，展示数据。</p>
+</li>
+<li><p>点击收藏按钮，如果本地没有收藏，则将整条商品数据存储到localStorage；如果本地有收藏，则push进收藏数组里，同时要判断该商品是否已存在，如果已存在再次点击则是取消收藏，使用splice移除该数据。</p>
+</li>
+<li><p>进入页面加载时，需要取出localstorage中的收藏数据渲染。</p>
+<ul>
+<li>onLoad时，判断本地是否有收藏列表。有则和所有商品数据对比，find出收藏的商品数据，设置对应的状态为true。</li>
+</ul>
+</li>
+<li><p>所有的收藏操作都需要在登录状态下才能操作。使用mixins封装一个检测本地是否有token值的函数，在productDetail页面加载时引入，如果未登录，不执行后面的语句。</p>
+</li>
+<li><p>点击加入购物车时，调addCart接口</p>
+</li>
+<li><p>点击购买，弹出遮罩层，选择对应的商品规格，调生成确认单的接口，然后跳转到订单确认页进行地址的添加和订单支付。</p>
+<blockquote>
+<p>补充：数组的substring方法，用于提取字符串中介于两个指定下标之间的字符。stringObject.substring(start,stop)。</p>
+<p>返回值是一个新的字符串，该字符串值包含 <em>stringObject</em> 的一个子字符串，其内容是从 <em>start</em> 处到 <em>stop</em>-1 处的所有字符，其长度为 <em>stop</em>减 <em>start</em>。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="confirmOrder页"><a href="#confirmOrder页" class="headerlink" title="confirmOrder页"></a>confirmOrder页</h4><h5 id="介绍-3"><a href="#介绍-3" class="headerlink" title="介绍"></a>介绍</h5><p>当在productDetail页直接点击购买，或在mine页的购物车和订单页未付款内点击购买，会跳转到confirmOrder订单确认页。在订单确认也可进行选择地址。之后点击购买跳转到pay页面。</p>
+<h5 id="实现-2"><a href="#实现-2" class="headerlink" title="实现"></a>实现</h5><ul>
+<li><p>onLoad时根据传进的orderId调接口获取预订单，将确认单的数据展示在页面上。</p>
+</li>
+<li><p>选择地址时引入了省市区三级联动插件，跳转到address页面。</p>
+<ul>
+<li><p>点击选择添加地址跳转到addressDetail页，选择新地址后返回address页</p>
+</li>
+<li><p>在address页点击收货地址后back到订单确认页，当前的订单确认页显示选择的新地址</p>
+<img src="/.com//confirm.png" alt="img" style="zoom:50%;"></li>
+</ul>
+</li>
+<li><p>在confirmOrder页点击继续付款跳转至pay页面，选择对应的付款方式，调支付接口即可完成模拟支付。</p>
+</li>
+</ul>
+<h4 id="find页"><a href="#find页" class="headerlink" title="find页"></a>find页</h4><h5 id="介绍-4"><a href="#介绍-4" class="headerlink" title="介绍"></a>介绍</h5><p>find页包含“精选文章”和“品牌列表”两个模块。在“精选文章”中可点击查看文章详情，也可进行收藏。</p>
+<h5 id="实现-3"><a href="#实现-3" class="headerlink" title="实现"></a>实现</h5><ul>
+<li>调接口渲染文章数据显示在页面上。</li>
+<li>文章收藏。<ul>
+<li>由于文章数据是多条，所以和商品收藏步骤有些不同。调接口获得文章数据的返回值res后，先循环遍历每条文章数据，动态添加isCollect属性。</li>
+<li>点击收藏按钮，查找本地文章收藏，如果本地没有，直接存储；如果本地有，使用find查找是否存在该数据，如果有，再次点击是取消收藏，如果没有，则push进数组，收藏成功。</li>
+<li>页面加载时，需要渲染收藏数据。先从本地取出文章收藏，如果存在则循环遍历，将已收藏的文章isCollect设置为true</li>
+</ul>
+</li>
+</ul>
+<h4 id="login页-amp-register页"><a href="#login页-amp-register页" class="headerlink" title="login页&amp;register页"></a>login页&amp;register页</h4><h5 id="介绍-5"><a href="#介绍-5" class="headerlink" title="介绍"></a>介绍</h5><p>登陆之前先进行注册，调取注册接口，传递用户名，手机号头像等数据。注册成功跳转到登录页，传递用户名和密码。</p>
+<h5 id="实现-4"><a href="#实现-4" class="headerlink" title="实现"></a>实现</h5><ul>
+<li><p>注册页需要传递的数据有手机号，密码，用户名，昵称，头像。初始是默认头像，可在注册页点击修改头像。</p>
+<ul>
+<li>在H5平台使用uni.chooseImage,成功后将临时路径上传到服务器，再将返回的图片路径展示在页面上。</li>
+<li>在小程序端使用uni.chooseMedia</li>
+</ul>
+</li>
+<li><p>在login页输入用户名和密码，调登陆接口，将返回的token值存储到本地，登陆成功后返回个人信息页。</p>
+</li>
+</ul>
+<h4 id="mine页"><a href="#mine页" class="headerlink" title="mine页"></a>mine页</h4><h5 id="介绍-6"><a href="#介绍-6" class="headerlink" title="介绍"></a>介绍</h5><p>mine页包含个人信息，我的订单，商品收藏，文章收藏，购物车等部分。</p>
+<img src="/.com//mine.png" alt="img" style="zoom: 50%;">
+
+
+
+<h5 id="实现-5"><a href="#实现-5" class="headerlink" title="实现"></a>实现</h5><ul>
+<li><p>刚进入页面时会通过混入mixin查询本地是否存在token，来判断用户是否登录，未登录会提示用户登录。</p>
+</li>
+<li><p>页面加载时调接口获取用户信息，渲染在页面上。点击设置跳转到changeInfo页面，可修改用户的手机号，昵称，头像等信息。</p>
+</li>
+<li><p>在商品收藏和文章收藏，点击进入收藏页获取数据渲染</p>
+</li>
+<li><p>点击购物车进入cart页面，调接口获取购物车数据渲染，引入第三方插件实现购物车的单选和全选，点击购买进入订单确认页。</p>
+</li>
+<li><p>点击我的订单进入order页面，调接口获取全部订单数据后，在过滤器中根据status判断订单的状态是未付款还是已付款等等。</p>
+<img src="/.com//order.png" alt="img" style="zoom: 50%;">
+</li>
+<li><p>点击tab栏传递index实现tab栏的切换</p>
+</li>
+<li><p>待付款页面有“取消订单”和“付款”按钮，已收获页面有“确认收货”按钮。</p>
+<ul>
+<li><p>status对应值：</p>
+</li>
+<li><pre><code class="js">               0 ==&gt; 待付款
+ *             生成订单后用户可以: 取消订单，付款 
+ *             1 ==&gt; 待发货
+ *             用户已付款 ==&gt; 等待商家发货
+ *             2 ==&gt; 已发货
+ *             等待用户收货  此时用户可以进行收货或者退货
+ *             此时界面展示两种状态 一种是退货 一种是退货中  根据字段isReturn进行判断 0 退货申请 1 退货中
+ *             3 ==&gt; 已完成
+ *             4 ==&gt; 已退单
+ *             3 和 4 的数据在一起展示
+ *             用户收货或退货之后 订单就变成已完成的状态，此时分为两种情况
+ *             第一种是订单已完成 
+ *             第二种    订单中的商品全部退完 退完之后订单状态自动变更成为已退单的状态
+ *             5 ==&gt; 无效订单
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>nancy Jane
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/08/01/12-leju/" title="基于uniapp的家居类购物小程序项目总结">http://example.com/2023/08/01/12-leju/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/uniapp/" rel="tag"># uniapp</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/07/18/11-swiper/" rel="prev" title="今天来聊聊微信小程序中的轮播">
+      <i class="fa fa-chevron-left"></i> 今天来聊聊微信小程序中的轮播
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="<MTAyMC81ODQ1MS8zNDkxNA==>"></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">项目介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="nav-number">2.1.</span> <span class="nav-text">项目结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">需求实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#home%E9%A1%B5"><span class="nav-number">3.0.1.</span> <span class="nav-text">home页</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.0.1.1.</span> <span class="nav-text">介绍</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#category%E9%A1%B5"><span class="nav-number">3.0.2.</span> <span class="nav-text">category页</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D-1"><span class="nav-number">3.0.2.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.0.2.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#productDetail%E9%A1%B5"><span class="nav-number">3.0.3.</span> <span class="nav-text">productDetail页</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D-2"><span class="nav-number">3.0.3.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">3.0.3.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#confirmOrder%E9%A1%B5"><span class="nav-number">3.0.4.</span> <span class="nav-text">confirmOrder页</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D-3"><span class="nav-number">3.0.4.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-2"><span class="nav-number">3.0.4.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#find%E9%A1%B5"><span class="nav-number">3.0.5.</span> <span class="nav-text">find页</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D-4"><span class="nav-number">3.0.5.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-3"><span class="nav-number">3.0.5.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#login%E9%A1%B5-amp-register%E9%A1%B5"><span class="nav-number">3.0.6.</span> <span class="nav-text">login页&amp;register页</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D-5"><span class="nav-number">3.0.6.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-4"><span class="nav-number">3.0.6.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mine%E9%A1%B5"><span class="nav-number">3.0.7.</span> <span class="nav-text">mine页</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D-6"><span class="nav-number">3.0.7.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-5"><span class="nav-number">3.0.7.2.</span> <span class="nav-text">实现</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="nancy Jane"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">nancy Jane</p>
+  <div class="site-description" itemprop="description">心之所向，一苇以航</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qiannangao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qiannangao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3065966250@qq.com" title="E-Mail → mailto:3065966250@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2023-05 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">nancy Jane</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">39k</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共16.4k字</span>
+</div>
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
