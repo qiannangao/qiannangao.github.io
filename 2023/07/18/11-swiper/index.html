@@ -25,15 +25,15 @@
 <meta property="og:url" content="http://example.com/2023/07/18/11-swiper/index.html">
 <meta property="og:site_name" content="倩南">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/.com//07/18/11-swiper/banner.png">
-<meta property="og:image" content="http://example.com/.com//image-20230724230548655.png">
-<meta property="og:image" content="http://example.com/.com//07/18/11-swiper/show.png">
+<meta property="og:image" content="http://example.com/2023/07/18/11-swiper/07/18/11-swiper/banner.png">
+<meta property="og:image" content="http://example.com/2023/07/18/11-swiper/image-20230724230548655.png">
+<meta property="og:image" content="http://example.com/2023/07/18/11-swiper/07/18/11-swiper/show.png">
 <meta property="article:published_time" content="2023-07-18T03:22:55.000Z">
 <meta property="article:modified_time" content="2023-07-25T01:16:14.687Z">
 <meta property="article:author" content="nancy Jane">
 <meta property="article:tag" content="微信小程序，swiper">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/.com//07/18/11-swiper/banner.png">
+<meta name="twitter:image" content="http://example.com/2023/07/18/11-swiper/07/18/11-swiper/banner.png">
 
 <link rel="canonical" href="http://example.com/2023/07/18/11-swiper/">
 
@@ -235,7 +235,7 @@
 
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在微信小程序中使用轮播图实现了下图的效果。即轮播项两侧比中间小，轮播项变换时从小变大，并且左右留有一定间距。</p>
-<img src="/.com//07/18/11-swiper/banner.png" class title="img">
+<img src="07/18/11-swiper/banner.png" class title="img">
 
 
 
@@ -282,7 +282,7 @@
 </tbody></table>
 <ul>
 <li><p>分析</p>
-<img src="/.com//image-20230724230548655.png" alt="image-20230724230548655" style="zoom:80%;"></li>
+<img src="image-20230724230548655.png" alt="image-20230724230548655" style="zoom:80%;"></li>
 </ul>
 <p>swiper整体宽度750px（设计稿宽度为750rpx），每个轮播项宽度670px,750-670&#x3D;80，左右margin各20px,左右漏出的部分各20px。</p>
 <p>所以应设置左右margin均为20px。</p>
@@ -305,7 +305,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">data</span>: &#123;</span><br><span class="line">        <span class="attr">currentIndex</span>:<span class="number">0</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">swiperChange</span>(<span class="params">e</span>)&#123;</span><br><span class="line">        <span class="keyword">const</span> that=<span class="variable language_">this</span>;</span><br><span class="line">        that.<span class="title function_">setData</span>(&#123;</span><br><span class="line">            <span class="attr">currentIndex</span>:e.<span class="property">detail</span>.<span class="property">current</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
 
 <p>注意，此时<code>previous-margin</code>和<code>next-margin</code>均设置为了20rpx,但是会出现有空余空间，但是两侧不显示的情况。</p>
-<img src="/.com//07/18/11-swiper/show.png" class title="img">
+<img src="07/18/11-swiper/show.png" class title="img">
 
 <p>后来注意是quiet类名中的transform属性值为 scale(0.8)，也就是左右轮播项缩小80%，也就是当轮播项正常宽度为670px时，缩小80%为536px，缩小了134px。当margin为20px时，由于<strong>左右轮播项缩小太小，导致距离过远，显示在了页面外面</strong>。</p>
 <p><strong>正确解决办法</strong>是减小缩放大小，设置为<code>scale(0.93)</code>，此时缩小了47px。再将左右margin设置尽量宽点，为40px,使得缩小后的轮播项也能出现在页面内。</p>
