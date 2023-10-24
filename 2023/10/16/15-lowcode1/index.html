@@ -26,7 +26,7 @@
 <meta property="og:site_name" content="倩南">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-10-16T07:16:44.000Z">
-<meta property="article:modified_time" content="2023-10-18T09:40:34.000Z">
+<meta property="article:modified_time" content="2023-10-23T01:33:09.329Z">
 <meta property="article:author" content="nancy Jane">
 <meta property="article:tag" content="低代码">
 <meta property="article:tag" content="微搭">
@@ -186,7 +186,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-18 17:40:34" itemprop="dateModified" datetime="2023-10-18T17:40:34+08:00">2023-10-18</time>
+                <time title="修改时间：2023-10-23 09:33:09" itemprop="dateModified" datetime="2023-10-23T09:33:09+08:00">2023-10-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -211,14 +211,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>631</span>
+              <span>2.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
             <div class="post-description">01-从基础定义到创建应用</div>
 
@@ -233,7 +233,7 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Low-code development platform，指的是低代码开发平台（LCDP）。本身也是一种软件，为开发者提供了一个创建应用软件的开发环境，本质上是服务于开发者的生产力工具。和传统的IDE不同点在于，大多数情况下，开发者并不需要使用传统的手写代码方式进行编程，而是可以通过图形化拖拽、参数配置等更高效的方式完成开发工作。</p>
 <p>最近接触了腾讯的一款低代码产品—微搭低代码平台，所以打算写一套学习笔记集，初步预估时长一个月，记录自己从入门到非常熟悉的过程。</p>
-<h2 id="1-总体介绍"><a href="#1-总体介绍" class="headerlink" title="1.总体介绍"></a>1.总体介绍</h2><h3 id="1-创建和发布"><a href="#1-创建和发布" class="headerlink" title="1.创建和发布"></a>1.创建和发布</h3><p>创建应用有三种途径，从场景，空白（最常用），模板新建。新建模型应用时，模型应用通常作为小程序后台，自定义应用通常作为小程序。</p>
+<h2 id="1-入门"><a href="#1-入门" class="headerlink" title="1.入门"></a>1.入门</h2><h3 id="1-创建和发布"><a href="#1-创建和发布" class="headerlink" title="1.创建和发布"></a>1.创建和发布</h3><p>创建应用有三种途径，从场景，空白（最常用），模板新建。新建模型应用时，模型应用通常作为小程序后台，自定义应用通常作为小程序。</p>
 <p>有两种发布方式，体验版和正式版，不同版本的数据是隔离的。</p>
 <h3 id="2-变量定义"><a href="#2-变量定义" class="headerlink" title="2.变量定义"></a>2.变量定义</h3><h4 id="类型，作用域："><a href="#类型，作用域：" class="headerlink" title="类型，作用域："></a>类型，作用域：</h4><p>微搭中变量类型分为文字，数字，布尔值，数组，对象五种。布尔类型的变量常用于做权限控制。在组件的条件展示时，可以绑定布尔类型的变量，根据变量的值来决定组件是否显示。</p>
 <p>微搭中变量作用域分为全局变量和局部变量。</p>
@@ -242,6 +242,19 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$page.<span class="property">dataset</span>.<span class="property">state</span>.*** = *** <span class="comment">//局部变量赋值</span></span><br><span class="line">app.<span class="property">dataset</span>.<span class="property">state</span>.*** = ***   <span class="comment">//全局变量赋值</span></span><br></pre></td></tr></table></figure>
 
 <p>给组件绑定变量时添加表达式。</p>
+<h3 id="3-代码编辑器"><a href="#3-代码编辑器" class="headerlink" title="3.代码编辑器"></a>3.代码编辑器</h3><p>微搭中生命周期函数分为全局和页面，全局是指小程序级别（小程序启动，切后台，再显示，报错等），页面生命周期指具体页面加载完毕，页面隐藏等。</p>
+<p>代码编辑器的第一个lifestyle是指全局生命周期。每个页面的lifestyle是指页面的生命周期，可以在页面生命周期的函数中预加载数据（根据传入的数据标识加载该数据）。</p>
+<p>想要自定义方法时，在页面的handler下点击新建。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span>(<span class="params">&#123;event, data&#125;</span>) &#123;</span><br><span class="line">    <span class="comment">//event表示事件对象，data是调用事件时传入的参数</span></span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(event,data)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-数据容器"><a href="#4-数据容器" class="headerlink" title="4.数据容器"></a>4.数据容器</h3><ul>
+<li><p>数据列表包含空白，简单列表（常用于展示动态信息），详细列表，图文列表，卡片列表。</p>
+</li>
+<li><p>数据详情对应查看详情的功能（常用于从列表页点击某条数据，跳转到详情页然后展示）。使用数据详情页需要在<strong>列表页</strong>点击跳转页面时设置数据标识来传递参数，实现数据绑定。在详情页配置筛选条件，将数据标识配置成设置的参数。</p>
+</li>
+</ul>
+<h2 id="2-常用功能"><a href="#2-常用功能" class="headerlink" title="2.常用功能"></a>2.常用功能</h2><h3 id="1-页面跳转"><a href="#1-页面跳转" class="headerlink" title="1.页面跳转"></a>1.页面跳转</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">onAppLaunch</span>(<span class="params">launchOpts</span>) &#123;</span><br><span class="line">    <span class="comment">//console.log(&#x27;---------&gt; LifeCycle onAppLaunch&#x27;, launchOpts)</span></span><br><span class="line">    <span class="keyword">const</span> result = <span class="keyword">await</span> app.<span class="property">cloud</span>.<span class="title function_">callModel</span>(&#123;</span><br><span class="line">      <span class="attr">name</span>:<span class="string">&#x27;yhxx_5wybupo&#x27;</span>,</span><br><span class="line">      <span class="attr">methodName</span>:<span class="string">&#x27;wedaGetRecords&#x27;</span>,</span><br><span class="line">      <span class="attr">params</span>:&#123;</span><br><span class="line">        <span class="attr">pageNo</span>:<span class="number">1</span>,</span><br><span class="line">        <span class="attr">pageSize</span>:<span class="number">1</span>,</span><br><span class="line">        <span class="attr">where</span>:[</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">key</span>:<span class="string">&#x27;openid&#x27;</span>,</span><br><span class="line">            <span class="attr">rel</span>:<span class="string">&#x27;eq&#x27;</span>,</span><br><span class="line">            <span class="attr">val</span>:$app.<span class="property">auth</span>.<span class="property">currentUser</span>.<span class="property">openId</span></span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(result)</span><br><span class="line">    <span class="keyword">if</span>(result.<span class="property">total</span>&gt;<span class="number">0</span>)&#123;</span><br><span class="line">      $page.<span class="property">dataset</span>.<span class="property">state</span>.<span class="property">user</span> = result.<span class="property">records</span>[<span class="number">0</span>]</span><br><span class="line">      app.<span class="title function_">navigateTo</span>(&#123;</span><br><span class="line">        <span class="attr">pageId</span>:<span class="string">&quot;index&quot;</span>,</span><br><span class="line">        <span class="attr">params</span>:&#123;&#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      app.<span class="title function_">navigateTo</span>(&#123;</span><br><span class="line">        <span class="attr">pageId</span>:<span class="string">&quot;u_jiao_se_xuan_ze&quot;</span>,</span><br><span class="line">        <span class="attr">params</span>:&#123;&#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">onAppShow</span>(<span class="params">appShowOpts</span>) &#123;</span><br><span class="line">    <span class="comment">//console.log(&#x27;---------&gt; LifeCycle onAppShow&#x27;, appShowOpts)</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">onAppHide</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//console.log(&#x27;---------&gt; LifeCycle onAppHide&#x27;)</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">onAppError</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    <span class="comment">//console.log(&#x27;---------&gt; LifeCycle onAppError&#x27;, options)</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">onAppPageNotFound</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    <span class="comment">//console.log(&#x27;---------&gt; LifeCycle onAppPageNotFound&#x27;, options)</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">onAppUnhandledRejection</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    <span class="comment">//console.log(&#x27;---------&gt; LifeCycle onAppUnhandledRejection&#x27;, options)</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -348,7 +361,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%80%BB%E4%BD%93%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">1.总体介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%88%9B%E5%BB%BA%E5%92%8C%E5%8F%91%E5%B8%83"><span class="nav-number">2.1.</span> <span class="nav-text">1.创建和发布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89"><span class="nav-number">2.2.</span> <span class="nav-text">2.变量定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%EF%BC%8C%E4%BD%9C%E7%94%A8%E5%9F%9F%EF%BC%9A"><span class="nav-number">2.2.1.</span> <span class="nav-text">类型，作用域：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B5%8B%E5%80%BC%EF%BC%8C%E7%BB%91%E5%AE%9A%EF%BC%9A"><span class="nav-number">2.2.2.</span> <span class="nav-text">赋值，绑定：</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%85%A5%E9%97%A8"><span class="nav-number">2.</span> <span class="nav-text">1.入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%88%9B%E5%BB%BA%E5%92%8C%E5%8F%91%E5%B8%83"><span class="nav-number">2.1.</span> <span class="nav-text">1.创建和发布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89"><span class="nav-number">2.2.</span> <span class="nav-text">2.变量定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%EF%BC%8C%E4%BD%9C%E7%94%A8%E5%9F%9F%EF%BC%9A"><span class="nav-number">2.2.1.</span> <span class="nav-text">类型，作用域：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B5%8B%E5%80%BC%EF%BC%8C%E7%BB%91%E5%AE%9A%EF%BC%9A"><span class="nav-number">2.2.2.</span> <span class="nav-text">赋值，绑定：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BB%A3%E7%A0%81%E7%BC%96%E8%BE%91%E5%99%A8"><span class="nav-number">2.3.</span> <span class="nav-text">3.代码编辑器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%95%B0%E6%8D%AE%E5%AE%B9%E5%99%A8"><span class="nav-number">2.4.</span> <span class="nav-text">4.数据容器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD"><span class="nav-number">3.</span> <span class="nav-text">2.常用功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%A1%B5%E9%9D%A2%E8%B7%B3%E8%BD%AC"><span class="nav-number">3.1.</span> <span class="nav-text">1.页面跳转</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -364,14 +377,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -420,14 +433,14 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">44k</span>
+    <span title="站点总字数">46k</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共19k字</span>
+  <span class="post-count">博客全站共20.2k字</span>
 </div>
 
 
