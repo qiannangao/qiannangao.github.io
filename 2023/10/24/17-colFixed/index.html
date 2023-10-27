@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://example.com/2023/10/24/17-colFixed/10/24/17-colFixed/three.png">
 <meta property="og:image" content="http://example.com/2023/10/24/17-colFixed/10/24/17-colFixed/five.png">
 <meta property="article:published_time" content="2023-10-24T05:25:26.000Z">
-<meta property="article:modified_time" content="2023-10-25T05:43:59.982Z">
+<meta property="article:modified_time" content="2023-10-27T07:23:39.841Z">
 <meta property="article:author" content="nancy Jane">
 <meta property="article:tag" content="低代码">
 <meta property="article:tag" content="微搭">
@@ -193,7 +193,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-25 13:43:59" itemprop="dateModified" datetime="2023-10-25T13:43:59+08:00">2023-10-25</time>
+                <time title="修改时间：2023-10-27 15:23:39" itemprop="dateModified" datetime="2023-10-27T15:23:39+08:00">2023-10-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -218,7 +218,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>882</span>
+              <span>1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -273,7 +273,7 @@
 <h4 id="第二种情况"><a href="#第二种情况" class="headerlink" title="第二种情况"></a>第二种情况</h4><p>滚动容器嵌套数据列表</p>
 <img src="10/24/17-colFixed/four.png" class title="img">
 
-<p>此时给最后一列设置sticky不起作用，所以是<strong>嵌套在数据列表内设置黏性定位无效</strong>。此时我又试了一下不使用数据源，只用静态数据循环展示呢。也就是以下这种布局：</p>
+<p>此时给最后一列设置sticky不起作用，所以是嵌套在数据列表内设置黏性定位无效。此时我又试了一下不使用数据源，只用静态数据循环展示呢。也就是以下这种布局：</p>
 <img src="10/24/17-colFixed/three.png" class title="img">
 
 <p>此时最后一列可以固定。</p>
@@ -281,6 +281,7 @@
 <img src="10/24/17-colFixed/five.png" class title="img">
 
 <p>此时也可实现最后一列固定。如果考虑到页面上的美观问题，可以把数据列表设置宽高小点，放在不起眼的位置。</p>
+<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h3><p>有时候感觉自己愚蠢得好笑，以为是数据列表组件不兼容的问题，实际上是没有搞清楚黏性定位的正确用法。当数据列表嵌套在滚动容器内时，**列往上找到的第一个overflow不为visible的元素便是数据列表，此时列不会再基于滚动容器定位，所以需要给数据列表添加<code>overflow:visible</code>**，这时可以实现列固定在滚动容器右侧。</p>
 
     </div>
 
@@ -387,7 +388,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">1.问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86"><span class="nav-number">2.</span> <span class="nav-text">2.补充知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">3.解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%A7%8D%E6%83%85%E5%86%B5"><span class="nav-number">3.1.</span> <span class="nav-text">第一种情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%A7%8D%E6%83%85%E5%86%B5"><span class="nav-number">3.2.</span> <span class="nav-text">第二种情况</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">1.问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86"><span class="nav-number">2.</span> <span class="nav-text">2.补充知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">3.解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%A7%8D%E6%83%85%E5%86%B5"><span class="nav-number">3.1.</span> <span class="nav-text">第一种情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%A7%8D%E6%83%85%E5%86%B5"><span class="nav-number">3.2.</span> <span class="nav-text">第二种情况</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">4.总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -466,7 +467,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共20.6k字</span>
+  <span class="post-count">博客全站共20.8k字</span>
 </div>
 
 
