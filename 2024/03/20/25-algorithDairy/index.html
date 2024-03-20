@@ -1,0 +1,390 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>链表小记 | NancyJane</title><meta name="keywords" content="链表,哈希表,set,map"><meta name="author" content="nancy Jane"><meta name="copyright" content="nancy Jane"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="链表小记"><meta name="application-name" content="链表小记"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="链表小记"><meta property="og:url" content="http://example.com/2024/03/20/25-algorithDairy/index.html"><meta property="og:site_name" content="NancyJane"><meta property="og:description" content=""><meta property="og:locale" content="zh-CN"><meta property="og:image" content="http://example.com/avatar.jpg"><meta property="article:author" content="nancy Jane"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="http://example.com/avatar.jpg"><meta name="description" content=""><link rel="shortcut icon" href="/logo2.png"><link rel="canonical" href="http://example.com/2024/03/20/25-algorithDairy/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.20/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: {"enable":true,"img":"https://upload-bbs.miyoushe.com/upload/2023/09/03/125766904/ee23df8517f3c3e3efc4145658269c06_5714860933110284659.png"},
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: undefined,
+  LA51: undefined,
+  greetingBox: undefined,
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: undefined,
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: nancy Jane","link":"链接: ","source":"来源: NancyJane","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'NancyJane',
+  title: '链表小记',
+  postAI: '',
+  pageFillDescription: '一.快慢链表, 1检测链表中的环, 2查找链表的中点, 3查找链表中倒数第n个节点, 二.哈希表, 1定义, 2小题, 3实现, 4.Map 的常用方法, 5.Set 的常用方法, 6.补充知识点小记一快慢链表快慢指针是一种常用的算法技巧广泛应用于链表和数组中解决如环形链表检测链表中点查找判断链表是否有环等问题它涉及两个指针分别称为快指针和慢指针快指针的移动速度是慢指针的两倍即每次循环中慢指针移动一步快指针移动两步这种差速移动可以帮助解决一系列问题以下是一些常见的应用示例为什么快指针的移动速度是慢指针两倍想象一下一个环形跑道跑的快的人始终会和跑得慢的人相遇但如果将快指针一次移动两步或以上就会出现错过慢指针的情况不利于应用于链表判断检测链表中的环快慢指针可以用来检测链表是否有环具体方法是两个指针同时从链表的头节点出发快指针每次移动两步慢指针每次移动一步如果链表中存在环那么快指针最终会追上慢指针两者相遇这说明链表有环如果链表中没有环快指针会先到达链表的末尾慢指针移动一步快指针移动两步如果在某个点快指针追上了慢指针则表示链表中存在环如果快指针到达链表末尾则表示链表中不存在环查找链表的中点使用快慢指针查找链表的中点时快指针每次移动两步慢指针每次移动一步当快指针到达链表末尾时慢指针正好在链表的中间位置如果链表的长度是奇数慢指针指向中间节点如果长度是偶数慢指针指向中间两个节点的第一个查找链表中倒数第个节点首先让快指针移动步然后快慢指针同时开始移动每次各移动一步当快指针到达链表末尾时慢指针所在的位置就是倒数第个节点二哈希表定义哈希表也被称为散列表是一种用于存储键值对的数据结构哈希函数的作用是将输入通常是一个键转换成一个固定范围内的整数值这个整数值就作为数组哈希表背后的数据结构的索引这样通过键就能直接计算出值存储的位置从而极大提高查找速度哈希表的核心组成部分包括哈希函数负责将输入键映射到一个有限的索引范围例如数组的索引数组用于存储数据的连续内存空间冲突解决策略由于哈希函数可能将不同的输入映射到同一个输出这称为冲突所以需要一种机制来处理这些冲突常见的策略包括链表法将冲突的元素存储在链表中和开放寻址法寻找数组中的另一个空槽位哈希表的性能很大程度上依赖于哈希函数的选择和冲突解决策略的效率一个好的哈希函数会均匀地分布键减少冲突的可能性从而提高整个哈希表的性能在最理想的情况下哈希表的查找插入和删除操作的时间复杂度为然而在最坏的情况下比如当所有的键都映射到同一个位置时这些操作的时间复杂度会退化为其中是哈希表中元素的数量因此设计一个高效的哈希函数和选择合适的冲突解决策略对于实现一个高效的哈希表至关重要小题哈希表判断单向链表中是否存在环创建一个哈希表来存储访问过的节点从头节点开始遍历链表遍历直到链表结束如果当前节点已经存在于哈希表中则表示链表存在环返回表示存在环将当前节点添加到哈希表中移动到下一个节点如果遍历完链表没有发现环则返回实现大多数现代编程语言中都已经内置了哈希表的实现如的和的的等和是现代中提供的两种集合类型它们各自有一系列的方法用于操作集合中的数据下面列出了这些方法中的一些常用的关于和值得思考的地方有很多很多优秀的前人写的文章都非常详细且易于理解非常帮助理解的常用方法创建一个新的对象向添加一个新的键值对如果键已经存在则更新对应的值根据键来获取对应的值如果键不存在则返回检查中是否存在指定的键返回一个布尔值根据键来删除对应的键值对成功删除返回否则返回清除中的所有键值对一个属性返回中键值对的数量返回一个新的对象它按插入顺序包含了对象中每个元素的键返回一个新的对象它按插入顺序包含了对象中每个元素的值返回一个新的对象它按插入顺序包含了对象中每个元素的数组按插入顺序为对象中的每个键值对调用一次提供的回调函数的常用方法创建一个新的对象向添加一个新的元素如果该元素已存在则不会改变从中删除指定的元素成功删除返回否则返回检查中是否存在指定的元素返回一个布尔值清除中的所有元素一个属性返回中元素的数量没有键的概念和方法返回一个新的对象它包含了中的每个元素由于历史原因方法的行为与方法相同返回一个新的对象它包含了中每个元素的数组对对象中的每个元素执行一次提供的回调函数这些方法为和提供了灵活的操作方式可以用来执行各种集合操作如添加删除查找和遍历等补充',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-20 13:54:01',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">NancyJane</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/CSS/" style="font-size: 1.05rem;">CSS<sup>1</sup></a><a href="/tags/ES6/" style="font-size: 1.05rem;">ES6<sup>2</sup></a><a href="/tags/JS/" style="font-size: 1.05rem;">JS<sup>8</sup></a><a href="/tags/TCP/" style="font-size: 1.05rem;">TCP<sup>1</sup></a><a href="/tags/element-admin-template/" style="font-size: 1.05rem;">element-admin-template<sup>1</sup></a><a href="/tags/map/" style="font-size: 1.05rem;">map<sup>1</sup></a><a href="/tags/set/" style="font-size: 1.05rem;">set<sup>1</sup></a><a href="/tags/uniapp/" style="font-size: 1.05rem;">uniapp<sup>1</sup></a><a href="/tags/vue/" style="font-size: 1.05rem;">vue<sup>3</sup></a><a href="/tags/wow%E6%88%91/" style="font-size: 1.05rem;">wow我<sup>1</sup></a><a href="/tags/%E4%BD%8E%E4%BB%A3%E7%A0%81/" style="font-size: 1.05rem;">低代码<sup>5</sup></a><a href="/tags/%E4%BD%8E%E4%BB%A3%E7%A0%81%EF%BC%8C%E5%BE%AE%E6%90%AD/" style="font-size: 1.05rem;">低代码，微搭<sup>1</sup></a><a href="/tags/%E5%91%A8%E8%AE%B0/" style="font-size: 1.05rem;">周记<sup>2</sup></a><a href="/tags/%E5%93%88%E5%B8%8C/" style="font-size: 1.05rem;">哈希<sup>1</sup></a><a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" style="font-size: 1.05rem;">哈希表<sup>1</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%8Cswiper/" style="font-size: 1.05rem;">微信小程序，swiper<sup>1</sup></a><a href="/tags/%E5%BE%AE%E6%90%AD/" style="font-size: 1.05rem;">微搭<sup>5</sup></a><a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 1.05rem;">链表<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">八月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/06/"><span class="card-archive-list-date">六月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/05/"><span class="card-archive-list-date">五月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item on" id="consoleCommentBarrage" onclick="anzhiyu.switchCommentBarrage()" title="热评开关"><a class="commentBarrage"><i class="anzhiyufont anzhiyu-icon-message"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%80%BB%E7%BB%93/" itemprop="url">总结</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E9%93%BE%E8%A1%A8/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>链表</span></a><a class="article-meta__tags" href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>哈希表</span></a><a class="article-meta__tags" href="/tags/set/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>set</span></a><a class="article-meta__tags" href="/tags/map/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>map</span></a></span></div></div><h1 class="post-title" itemprop="name headline">链表小记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-03-20T05:50:47.000Z" title="发表于 2024-03-20 13:50:47">2024-03-20</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-03-20T05:54:01.152Z" title="更新于 2024-03-20 13:54:01">2024-03-20</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="链表小记"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为上海"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>上海</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src=""></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="http://example.com/2024/03/20/25-algorithDairy/"><header><a class="post-meta-categories" href="/categories/%E6%80%BB%E7%BB%93/" itemprop="url">总结</a><a href="/tags/%E9%93%BE%E8%A1%A8/" tabindex="-1" itemprop="url">链表</a><a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" tabindex="-1" itemprop="url">哈希表</a><a href="/tags/set/" tabindex="-1" itemprop="url">set</a><a href="/tags/map/" tabindex="-1" itemprop="url">map</a><h1 id="CrawlerTitle" itemprop="name headline">链表小记</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">nancy Jane</span><time itemprop="dateCreated datePublished" datetime="2024-03-20T05:50:47.000Z" title="发表于 2024-03-20 13:50:47">2024-03-20</time><time itemprop="dateCreated datePublished" datetime="2024-03-20T05:54:01.152Z" title="更新于 2024-03-20 13:54:01">2024-03-20</time></header><p>知识点小记</p>
+<h2 id="一-快慢链表"><a href="#一-快慢链表" class="headerlink" title="一.快慢链表"></a>一.快慢链表</h2><p>快慢指针是一种常用的算法技巧，广泛应用于链表和数组中，解决如环形链表检测、链表中点查找、判断链表是否有环等问题。它涉及两个指针，分别称为“快指针”和“慢指针”。<strong>快指针的移动速度是慢指针的两倍</strong>，即每次循环中，慢指针移动一步，快指针移动两步。这种差速移动可以帮助解决一系列问题，以下是一些常见的应用示例：</p>
+<p>为什么快指针的移动速度是慢指针两倍？想象一下一个环形跑道，跑的快的人始终会和跑得慢的人相遇，但如果将快指针一次移动两步或以上，就会出现错过慢指针的情况，不利于应用于链表判断</p>
+<h3 id="1检测链表中的环"><a href="#1检测链表中的环" class="headerlink" title="1检测链表中的环"></a>1检测链表中的环</h3><p>快慢指针可以用来检测链表是否有环。具体方法是，两个指针同时从链表的头节点出发，<strong>快指针每次移动两步，慢指针每次移动一步</strong>。如果链表中存在环，那么快指针最终会追上慢指针（两者相遇），这说明链表有环；如果链表中没有环，快指针会先到达链表的末尾。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">value = <span class="number">0</span>, next = <span class="literal">null</span></span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">value</span> = value;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">next</span> = next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hasCycle</span>(<span class="params">head</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (head === <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> slow = head;</span><br><span class="line">    <span class="keyword">let</span> fast = head;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (fast !== <span class="literal">null</span> &amp;&amp; fast.<span class="property">next</span> !== <span class="literal">null</span>) &#123;</span><br><span class="line">        slow = slow.<span class="property">next</span>; <span class="comment">// 慢指针移动一步</span></span><br><span class="line">        fast = fast.<span class="property">next</span>.<span class="property">next</span>; <span class="comment">// 快指针移动两步</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (slow === fast) &#123;</span><br><span class="line">            <span class="comment">// 如果在某个点快指针追上了慢指针，则表示链表中存在环</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果快指针到达链表末尾，则表示链表中不存在环</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2查找链表的中点"><a href="#2查找链表的中点" class="headerlink" title="2查找链表的中点"></a>2查找链表的中点</h3><p>使用快慢指针查找链表的中点时，快指针每次移动两步，慢指针每次移动一步。<strong>当快指针到达链表末尾时，慢指针正好在链表的中间位置</strong>。如果链表的长度是奇数，慢指针指向中间节点；如果长度是偶数，慢指针指向中间两个节点的第一个。</p>
+<h3 id="3查找链表中倒数第n个节点"><a href="#3查找链表中倒数第n个节点" class="headerlink" title="3查找链表中倒数第n个节点"></a>3查找链表中倒数第n个节点</h3><p>首先，让快指针移动n步，然后快慢指针同时开始移动，每次各移动一步。当快指针到达链表末尾时，慢指针所在的位置就是倒数第n个节点。</p>
+<h2 id="二-哈希表"><a href="#二-哈希表" class="headerlink" title="二.哈希表"></a>二.哈希表</h2><h3 id="1定义"><a href="#1定义" class="headerlink" title="1定义"></a>1定义</h3><p>哈希表（Hash Table），也被称为散列表，是一种用于存储键值对的数据结构。哈希函数的作用是<strong>将输入（通常是一个键）转换成一个固定范围内的整数值，这个整数值就作为数组（哈希表背后的数据结构）的索引</strong>。这样，通过键就能直接计算出值存储的位置，从而极大提高查找速度。</p>
+<p>哈希表的核心组成部分包括：</p>
+<ol>
+<li><strong>哈希函数</strong>：负责将输入（键）映射到一个有限的索引范围（例如，数组的索引）。</li>
+<li><strong>数组</strong>：用于存储数据的连续内存空间。</li>
+<li><strong>冲突解决策略</strong>：由于哈希函数可能将不同的输入映射到同一个输出（这称为“冲突”），所以需要一种机制来处理这些冲突。常见的策略包括链表法（将冲突的元素存储在链表中）和开放寻址法（寻找数组中的另一个空槽位）。</li>
+</ol>
+<p>哈希表的性能很大程度上依赖于哈希函数的选择和冲突解决策略的效率。一个好的哈希函数会<strong>均匀地分布键</strong>，减少冲突的可能性，从而提高整个哈希表的性能。</p>
+<p>在最理想的情况下，**哈希表的查找、插入和删除操作的时间复杂度为O(1)**。然而，在最坏的情况下，比如当所有的键都映射到同一个位置时，这些操作的时间复杂度会退化为O(n)，其中n是哈希表中元素的数量。因此，设计一个高效的哈希函数和选择合适的冲突解决策略对于实现一个高效的哈希表至关重要。</p>
+<h3 id="2小题"><a href="#2小题" class="headerlink" title="2小题"></a>2小题</h3><p>哈希表判断单向链表中是否存在环</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">hasCycle</span>(<span class="params">head</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> visited = <span class="keyword">new</span> <span class="title class_">Set</span>(); <span class="comment">// 创建一个哈希表来存储访问过的节点</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> current = head; <span class="comment">// 从头节点开始遍历链表</span></span><br><span class="line">    <span class="keyword">while</span> (current !== <span class="literal">null</span>) &#123; <span class="comment">// 遍历直到链表结束</span></span><br><span class="line">        <span class="keyword">if</span> (visited.<span class="title function_">has</span>(current)) &#123; <span class="comment">// 如果当前节点已经存在于哈希表中，则表示链表存在环</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">// 返回true表示存在环</span></span><br><span class="line">        &#125;</span><br><span class="line">        visited.<span class="title function_">add</span>(current); <span class="comment">// 将当前节点添加到哈希表中</span></span><br><span class="line">        current = current.<span class="property">next</span>; <span class="comment">// 移动到下一个节点</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 如果遍历完链表没有发现环，则返回false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3实现"><a href="#3实现" class="headerlink" title="3实现"></a>3实现</h3><p>大多数现代编程语言中都已经内置了哈希表的实现，如JavaScript的<strong>Map</strong>和<strong>Set</strong>，Python的<strong>dict</strong>，Java的<strong>HashMap</strong>等</p>
+<p><code>Map</code> 和 <code>Set</code> 是现代JavaScript中提供的两种集合类型，它们各自有一系列的方法用于操作集合中的数据。下面列出了这些方法中的一些常用的。</p>
+<p>关于map和set，值得思考的地方有很多，很多优秀的前人写的文章都非常详细且易于理解，非常帮助理解。</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/523850774">https://zhuanlan.zhihu.com/p/523850774</a></p>
+<h3 id="4-Map-的常用方法"><a href="#4-Map-的常用方法" class="headerlink" title="4.Map 的常用方法"></a>4.Map 的常用方法</h3><ul>
+<li><strong>new Map()</strong>: 创建一个新的 <code>Map</code> 对象。</li>
+<li><strong>set(key, value)</strong>: 向 <code>Map</code> 添加一个新的键值对。如果键已经存在，则更新对应的值。</li>
+<li><strong>get(key)</strong>: 根据键来获取对应的值。如果键不存在，则返回 <code>undefined</code>。</li>
+<li><strong>has(key)</strong>: 检查 <code>Map</code> 中是否存在指定的键。返回一个布尔值。</li>
+<li><strong>delete(key)</strong>: 根据键来删除对应的键值对。成功删除返回 <code>true</code>，否则返回 <code>false</code>。</li>
+<li><strong>clear()</strong>: 清除 <code>Map</code> 中的所有键值对。</li>
+<li><strong>size</strong>: 一个属性，返回 <code>Map</code> 中键值对的数量。</li>
+<li><strong>keys()</strong>: 返回一个新的 Iterator 对象，它按插入顺序包含了 <code>Map</code> 对象中每个元素的键。</li>
+<li><strong>values()</strong>: 返回一个新的 Iterator 对象，它按插入顺序包含了 <code>Map</code> 对象中每个元素的值。</li>
+<li><strong>entries()</strong>: 返回一个新的 Iterator 对象，它按插入顺序包含了 <code>Map</code> 对象中每个元素的 <code>[key, value]</code> 数组。</li>
+<li><strong>forEach(callbackFn[, thisArg])</strong>: 按插入顺序，为 <code>Map</code> 对象中的每个键值对调用一次提供的回调函数。</li>
+</ul>
+<h3 id="5-Set-的常用方法"><a href="#5-Set-的常用方法" class="headerlink" title="5.Set 的常用方法"></a>5.Set 的常用方法</h3><ul>
+<li><strong>new Set()</strong>: 创建一个新的 <code>Set</code> 对象。</li>
+<li><strong>add(value)</strong>: 向 <code>Set</code> 添加一个新的元素。如果该元素已存在，则 <code>Set</code> 不会改变。</li>
+<li><strong>delete(value)</strong>: 从 <code>Set</code> 中删除指定的元素。成功删除返回 <code>true</code>，否则返回 <code>false</code>。</li>
+<li><strong>has(value)</strong>: 检查 <code>Set</code> 中是否存在指定的元素。返回一个布尔值。</li>
+<li><strong>clear()</strong>: 清除 <code>Set</code> 中的所有元素。</li>
+<li><strong>size</strong>: 一个属性，返回 <code>Set</code> 中元素的数量。</li>
+<li><strong>values() &#x2F; keys()</strong>: <code>Set</code> 没有键的概念，<code>values()</code> 和 <code>keys()</code> 方法返回一个新的 Iterator 对象，它包含了 <code>Set</code> 中的每个元素。由于历史原因，<code>keys()</code> 方法的行为与 <code>values()</code> 方法相同。</li>
+<li><strong>entries()</strong>: 返回一个新的 Iterator 对象，它包含了 <code>Set</code> 中每个元素的 <code>[value, value]</code> 数组。</li>
+<li><strong>forEach(callbackFn[, thisArg])</strong>: 对 <code>Set</code> 对象中的每个元素执行一次提供的回调函数。</li>
+</ul>
+<p>这些方法为 <code>Map</code> 和 <code>Set</code> 提供了灵活的操作方式，可以用来执行各种集合操作，如添加、删除、查找和遍历等。</p>
+<h3 id="6-补充"><a href="#6-补充" class="headerlink" title="6.补充"></a>6.补充</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jianghao233/article/details/103772274">https://blog.csdn.net/jianghao233/article/details/103772274</a></p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src="/avatar.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src="/avatar.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">nancy Jane</div><div class="post-copyright__author_desc"></div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="http://example.com/2024/03/20/25-algorithDairy/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('http://example.com/2024/03/20/25-algorithDairy/')">链表小记</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="http://example.com/2024/03/20/25-algorithDairy/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=链表小记&amp;url=http://example.com/2024/03/20/25-algorithDairy/&amp;pic=" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="rm.copyPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">NancyJane</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/%E9%93%BE%E8%A1%A8/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>链表<span class="tagsPageCount">1</span></a><a class="post-meta__box__tags" href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>哈希表<span class="tagsPageCount">1</span></a><a class="post-meta__box__tags" href="/tags/set/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>set<span class="tagsPageCount">1</span></a><a class="post-meta__box__tags" href="/tags/map/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>map<span class="tagsPageCount">1</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2024/03/15/24-weeklyDiary2/"><img class="prev-cover" src="/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">偷懒的一篇周记3.11-3.17</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info-avatar"><img class="avatar-img" src="/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__description">心之所向，一苇以航</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E5%BF%AB%E6%85%A2%E9%93%BE%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text">一.快慢链表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E6%A3%80%E6%B5%8B%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E7%8E%AF"><span class="toc-number">1.1.</span> <span class="toc-text">1检测链表中的环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E6%9F%A5%E6%89%BE%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text">2查找链表的中点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E6%9F%A5%E6%89%BE%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACn%E4%B8%AA%E8%8A%82%E7%82%B9"><span class="toc-number">1.3.</span> <span class="toc-text">3查找链表中倒数第n个节点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="toc-number">2.</span> <span class="toc-text">二.哈希表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E5%AE%9A%E4%B9%89"><span class="toc-number">2.1.</span> <span class="toc-text">1定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E5%B0%8F%E9%A2%98"><span class="toc-number">2.2.</span> <span class="toc-text">2小题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.3.</span> <span class="toc-text">3实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Map-%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">2.4.</span> <span class="toc-text">4.Map 的常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Set-%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">2.5.</span> <span class="toc-text">5.Set 的常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E8%A1%A5%E5%85%85"><span class="toc-number">2.6.</span> <span class="toc-text">6.补充</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/20/25-algorithDairy/" title="链表小记">链表小记</a><time datetime="2024-03-20T05:50:47.000Z" title="发表于 2024-03-20 13:50:47">2024-03-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/15/24-weeklyDiary2/" title="偷懒的一篇周记3.11-3.17">偷懒的一篇周记3.11-3.17</a><time datetime="2024-03-15T07:14:57.000Z" title="发表于 2024-03-15 15:14:57">2024-03-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/11/23-weeklyDiary/" title="第一篇周记3.4-3.10">第一篇周记3.4-3.10</a><time datetime="2024-03-11T14:42:25.000Z" title="发表于 2024-03-11 22:42:25">2024-03-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/11/22-summary/" title="TO南——2024要保持热情">TO南——2024要保持热情</a><time datetime="2024-03-11T14:33:03.000Z" title="发表于 2024-03-11 22:33:03">2024-03-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/05/21-components/" title="关于微搭web端跳转到本页面并传递参数的问题">关于微搭web端跳转到本页面并传递参数的问题</a><time datetime="2023-12-05T01:05:40.000Z" title="发表于 2023-12-05 09:05:40">2023-12-05</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2023 - 2024 By <a class="footer-bar-link" href="/" title="nancy Jane" target="_blank">nancy Jane</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">7</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="博客"><img class="back-menu-item-icon" src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/CSS/" style="font-size: 0.88rem;">CSS<sup>1</sup></a><a href="/tags/ES6/" style="font-size: 0.88rem;">ES6<sup>2</sup></a><a href="/tags/JS/" style="font-size: 0.88rem;">JS<sup>8</sup></a><a href="/tags/TCP/" style="font-size: 0.88rem;">TCP<sup>1</sup></a><a href="/tags/element-admin-template/" style="font-size: 0.88rem;">element-admin-template<sup>1</sup></a><a href="/tags/map/" style="font-size: 0.88rem;">map<sup>1</sup></a><a href="/tags/set/" style="font-size: 0.88rem;">set<sup>1</sup></a><a href="/tags/uniapp/" style="font-size: 0.88rem;">uniapp<sup>1</sup></a><a href="/tags/vue/" style="font-size: 0.88rem;">vue<sup>3</sup></a><a href="/tags/wow%E6%88%91/" style="font-size: 0.88rem;">wow我<sup>1</sup></a><a href="/tags/%E4%BD%8E%E4%BB%A3%E7%A0%81/" style="font-size: 0.88rem;">低代码<sup>5</sup></a><a href="/tags/%E4%BD%8E%E4%BB%A3%E7%A0%81%EF%BC%8C%E5%BE%AE%E6%90%AD/" style="font-size: 0.88rem;">低代码，微搭<sup>1</sup></a><a href="/tags/%E5%91%A8%E8%AE%B0/" style="font-size: 0.88rem;">周记<sup>2</sup></a><a href="/tags/%E5%93%88%E5%B8%8C/" style="font-size: 0.88rem;">哈希<sup>1</sup></a><a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" style="font-size: 0.88rem;">哈希表<sup>1</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%8Cswiper/" style="font-size: 0.88rem;">微信小程序，swiper<sup>1</sup></a><a href="/tags/%E5%BE%AE%E6%90%AD/" style="font-size: 0.88rem;">微搭<sup>5</sup></a><a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 0.88rem;">链表<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="875058077" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.music.163.com/m/playlist?id=875058077&amp;userid=563415871&amp;creatorId=563415871&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.20/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("05/01/2023 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2023 By 安知鱼 V1.6.8",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 nancy Jane 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "3065966250@qq.com";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
